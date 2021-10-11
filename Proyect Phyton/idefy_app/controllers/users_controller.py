@@ -5,6 +5,9 @@ from idefy_app.models.user import User
 from flask_bcrypt import Bcrypt
 from flask import flash
 
+
+bcrypt = Bcrypt(app)
+
 # ==================================================Display pages===========================================
 
 @app.route('/register', methods = ['GET'])
@@ -16,3 +19,83 @@ def displayRegisterinfo():
 def displayLogininfo():
     
     return render_template('login.html')
+
+@app.route('/dashboard', methods = ['GET'])
+def displayDashboardinfo():
+    
+    userinfo = session['user_info']
+
+    return render_template('dashboard.html', user = userinfo)
+
+
+# ==================================================Login and register controllers===========================================
+
+@app.route('/register/submit', methods = ['POST'])
+def submitReg():
+
+    firstName = request.form['first_name']
+    lastName = request.form['last_name']
+    username = request.form['username']
+    email = request.form['email']
+    password = request.form['password']
+    confirmPass = request.form['conpass']
+    
+    encryptedpassword = bcrypt.generate_password_hash(password)
+
+    newUserInfo = {
+        "first_name" : firstName,
+        "last_name" : lastName,
+        "username" : username,
+        "email" : email,
+        "password" : password,
+        "encryptedpassword" : encryptedpassword,
+        "conpass" : confirmPass
+    }
+    if User.registerValidations(newUserInfo):
+        result = User.registerUser(newUserInfo)
+        userinfo = User.validatelogin3(result)
+        session.clear()
+        user_info = userinfo[0]
+        session['user_info'] = user_info
+        return redirect('/dashboard')
+    else:
+        return redirect('/register')
+
+@app.route ('/login/submit', methods = ['POST'])
+def loginValidation():
+    emailorUsername = request.form['emailUser']
+    password = request.form['user_password']
+    
+    result = User.validatelogin1(emailorUsername)
+
+    if len(result) == 1:
+        encryptedPassword = result[0]['user_password']
+        if bcrypt.check_password_hash(encryptedPassword,password):
+            session.clear()
+            user_info = result[0]
+            session['user_info'] = user_info
+            return redirect ('/dashboard')
+        else:
+            flash("You entered the wrong password for this Email 😓")
+    elif len(result) == 0:
+        result2 = User.validatelogin2(emailorUsername)
+        if len(result2) == 1:
+            encryptedPassword = result2[0]['user_password']
+            if bcrypt.check_password_hash(encryptedPassword,password):
+                session.clear()
+                user_info = result2[0]
+                session['user_info'] = user_info
+                return redirect ('/dashboard')
+            else:
+                flash("You entered the wrong password for this Username 😓")
+        else:
+            flash("There is no user with this information 📃❌")
+
+
+    return redirect('/login')
+
+
+
+
+
+
