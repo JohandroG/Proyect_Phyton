@@ -11,6 +11,8 @@ class User:
         self.first_name = data['username']
         self.first_name = data['email']
         self.first_name = data['password']
+        self.created_at = data['created_at']
+        self.updated_at = data['updated_at']
 
 #==========================================================================================================
 

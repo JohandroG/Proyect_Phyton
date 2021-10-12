@@ -13,7 +13,25 @@
         <a href="/logout">LogOut</a>
     </nav>
     
+    <div class="body">
 
+        <div class="idea">
+            <form>
+                <h2>Share you idea with the world</h2>
+                <textarea name="idea" placeholder="Write here your idea"></textarea>
+                <select name="category">
+                    {% for category in categories: %}
+                        <option>{{category['category']}}</option>
+                    {% endfor %}
+                </select>
+                <input type="hidden" value="{{user['user_id']}}"/>
+                <button type="submit">Post idea</button>
+            </form>
+
+            <h2>Or</h2>
+        <h2> add <a href="/category">Category</a> </h2>
+        </div>
+    </div>
     
 </body>
 </html>
