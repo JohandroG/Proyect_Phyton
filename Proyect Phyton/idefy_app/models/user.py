@@ -56,6 +56,31 @@ class User:
 
         isValid = True
 
+        query = "SELECT * FROM users WHERE email = %(email)s;"
+        emaildata = {
+                "email" : data['email'],
+            }
+        results = connectToMySQL('idefy').query_db(query,emaildata)
+        
+
+
+        query = "SELECT * FROM users WHERE username = %(username)s;"
+        usernamedata = {
+                "username" : data['username'],
+            }
+        results2 = connectToMySQL('idefy').query_db(query,usernamedata)
+        
+        EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+        
+        if not EMAIL_REGEX.match(data['email']):
+            flash("Invalid Email, write it in a valid format 📝")
+            isValid=False
+        if len(results2) >= 1:
+            flash("😥 Username already taken.")
+            isValid=False
+        if len(results) >= 1:
+            flash("😥 Email already taken.")
+            isValid=False
         if len(data['first_name']) < 3:
             flash("The first Name must be at least 3 characters")
             isValid = False
@@ -68,5 +93,13 @@ class User:
         if len(data['password']) != len(data['conpass']):
             flash("The Passwords do not match")
             isValid = False
+        if len(data['terms']) == "no":
+            flash("You need to agree the terms before to continue")
+            isValid = False
+
         return isValid
+
+
+#==========================================================================================================
+
 

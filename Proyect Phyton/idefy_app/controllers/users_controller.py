@@ -39,6 +39,7 @@ def submitReg():
     email = request.form['email']
     password = request.form['password']
     confirmPass = request.form['conpass']
+    termsagree = request.form['terms'] 
     
     encryptedpassword = bcrypt.generate_password_hash(password)
 
@@ -49,8 +50,10 @@ def submitReg():
         "email" : email,
         "password" : password,
         "encryptedpassword" : encryptedpassword,
-        "conpass" : confirmPass
+        "conpass" : confirmPass,
+        "terms" : termsagree 
     }
+
     if User.registerValidations(newUserInfo):
         result = User.registerUser(newUserInfo)
         userinfo = User.validatelogin3(result)
@@ -92,6 +95,13 @@ def loginValidation():
             flash("There is no user with this information 📃❌")
 
 
+    return redirect('/login')
+
+# ==================================================Logout and clean session===========================================
+
+@app.route('/logout')
+def logout():
+    session.clear()
     return redirect('/login')
 
 
