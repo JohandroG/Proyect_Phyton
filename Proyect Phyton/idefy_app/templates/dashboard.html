@@ -16,7 +16,7 @@
     <div class="body">
 
         <div class="idea">
-            <form>
+            <form action="/add/idea" method="POST">
                 <h2>Share you idea with the world</h2>
                 <textarea name="idea" placeholder="Write here your idea"></textarea>
                 <select name="category">
@@ -24,13 +24,32 @@
                         <option>{{category['category']}}</option>
                     {% endfor %}
                 </select>
-                <input type="hidden" value="{{user['user_id']}}"/>
+                <input type="hidden" name="user_id" value="{{user['user_id']}}"/>
                 <button type="submit">Post idea</button>
             </form>
-
             <h2>Or</h2>
         <h2> add <a href="/category">Category</a> </h2>
         </div>
+
+        {% for idea in ideas: %}
+            {% if idea['first_name'] != None: %}
+                
+                    <div>
+                        <h2>{{idea['first_name']}} says:</h2>
+                    </div>
+                    <div>
+                        <div><h4>{{idea['idea_info']}}</h4></div>
+                        <div>
+                            <div>
+                                <a href="/like/{{idea['idea_id']}}">Like</a>
+                            </div>
+                            <div><a href="/">{{idea['likes']}} people</a> like this</div>
+                        </div>
+                    </div>
+                    
+                {% endif %}
+        {% endfor %}
+
     </div>
     
 </body>

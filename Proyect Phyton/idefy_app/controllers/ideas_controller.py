@@ -3,6 +3,57 @@ from flask import render_template, session, redirect, request
 from idefy_app import app
 from idefy_app.models.user import User
 from idefy_app.models.category import Category
-
+from idefy_app.models.idea import Idea
 from flask_bcrypt import Bcrypt
 from flask import flash
+
+
+# ==================================================Display pages===========================================
+
+
+# ==================================================Add ideas and others===========================================
+
+
+@app.route('/add/idea', methods = ['POST'])
+def addIdeas():
+
+
+# =================validations are pending ====================
+
+    idea = request.form['idea']
+    category = request.form['category']
+    user_id = request.form['user_id']
+    category_id = Category.getcategoryID(category)
+    
+    
+    ideaInfo1 = (idea,category)
+    add_and_idea_id = Idea.addMSJ(ideaInfo1)
+
+    ideaInfo2 = (user_id,add_and_idea_id,category_id)
+    Idea.linkInfo(ideaInfo2)
+
+    return redirect ('/dashboard')
+
+# ==================================================likes===========================================
+
+@app.route('/like/<int:id>', methods = ['GET'])
+def addLikes(id):
+
+    idsInfo = {
+        "liker_id" : session['user_info']['user_id'],
+        "idea_id" : id
+    }
+
+    
+    coincidence =Idea.coincidence(idsInfo)
+
+    print(coincidence)
+
+    if len(coincidence) > 0:
+        Idea.dislike(idsInfo)
+        Idea.removeLike(idsInfo)
+    else:
+        Idea.like(idsInfo)
+        Idea.insertLike(idsInfo)
+
+    return redirect('/dashboard') #=========Nesecito algo que no me recargue la pagina

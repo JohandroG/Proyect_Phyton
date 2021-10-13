@@ -3,6 +3,7 @@ from flask import render_template, session, redirect, request
 from idefy_app import app
 from idefy_app.models.user import User
 from idefy_app.models.category import Category
+from idefy_app.models.idea import Idea
 from flask_bcrypt import Bcrypt
 from flask import flash
 
@@ -14,6 +15,8 @@ def displayCategoryform():
     categoryes = Category.getcategories()
 
     return render_template('addcategory.html', categories = categoryes)
+
+    
 
 
 # ==================================================Add and validate categories===========================================

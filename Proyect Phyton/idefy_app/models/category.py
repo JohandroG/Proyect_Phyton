@@ -11,6 +11,21 @@ class Category:
         self.updated_at = data['updated_at']
 
 #==========================================================================================================
+    @classmethod
+    def getcategoryID(cls,data):
+
+        query = "SELECT category_id FROM categories WHERE category = %(category)s"
+
+        info = {
+            'category' : data
+        }
+
+        results = connectToMySQL('idefy').query_db(query,info)
+        actualCategoryID = results[0]['category_id']
+        return actualCategoryID
+
+
+#==========================================================================================================
 
     @classmethod
     def addcategory(cls,data):

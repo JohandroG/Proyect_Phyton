@@ -3,6 +3,7 @@ from flask import render_template, session, redirect, request
 from idefy_app import app
 from idefy_app.models.user import User
 from idefy_app.models.category import Category
+from idefy_app.models.idea import Idea
 from flask_bcrypt import Bcrypt
 from flask import flash
 
@@ -24,10 +25,12 @@ def displayLogininfo():
 @app.route('/dashboard', methods = ['GET'])
 def displayDashboardinfo():
     
-    userinfo = session['user_info']
-    categoryes = Category.getcategories()
+    userInfo = session['user_info']
+    categoriesInfo = Category.getcategories()
+    ideasInfo = Idea.displayIdeasAllinfo()
+    print(ideasInfo)
 
-    return render_template('dashboard.html', user = userinfo, categories = categoryes)
+    return render_template('dashboard.html', user = userInfo, categories = categoriesInfo, ideas = ideasInfo)
 
 
 # ==================================================Login and register controllers===========================================
