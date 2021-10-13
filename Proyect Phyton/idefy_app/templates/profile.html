@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav></nav>
+
+    <div class="body">
+        <div style="border-bottom: 2px solid black; "> 
+            <!-- delete style later ============================================================= -->
+            <h1>Profile Information</h1>
+            <h2>Name: {{user['first_name']}} {{user['last_name']}}</h2>
+            <h2>Username: {{user['username']}}</h2>
+            <h2>Email: {{user['email']}}</h2>
+        </div>
+        <div>
+            {% if ideas == 0 and likesG == 0 and likesR == 0: %}
+            <h2>This user doesn't have any information yet 😅</h2>
+            <h4>Start sharing your ideas to get some likes and archive some trophies 😀🏆🏆</h4>
+            {% else: %}
+            <h2>Total number of ideas: {{ideas}}</h2>
+            <h2>Total number of likes given: {{likesG}}</h2>
+            <h2>Total number of likes received: {{likesR}}</h2>
+            {% endif %}
+            
+            
+            
+        </div>
+        <div class="rewardside">
+            <div>
+                <h1>Tropies:</h1>
+                <h3>Get trophies for given and receiving likes</h3>
+            </div>
+<!-- ===================================================Thropies Side==================================== -->
+            {% if likesR > 0: %}
+                <div class="reward">
+                    <h2>Your first like 🏆</h2>
+                    <h3>Picture</h3>
+                    <p>
+                        Congrats!! You have received your first like somebody liked your idea
+                        so, you are doing something great!! Keep on thinking 😎
+                    </p>
+                </div>
+            {% endif  %}
+
+            {% if likesG > 1: %}
+                <div class="reward">
+                    <h2>Generosity 🏆</h2>
+                    <h3>Picture</h3>
+                    <p>
+                        You give your first like! you sure made someone's day ✌
+                    </p>
+                </div>
+            {% endif  %}
+        </div>
+        
+    </div>
+</body>
+</html>

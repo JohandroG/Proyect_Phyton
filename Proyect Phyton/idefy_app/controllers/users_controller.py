@@ -32,6 +32,26 @@ def displayDashboardinfo():
 
     return render_template('dashboard.html', user = userInfo, categories = categoriesInfo, ideas = ideasInfo)
 
+@app.route('/profile/<int:id>', methods = ['GET'])
+def displayProfileinfo(id):
+
+    userInfo = User.validatelogin3(id)
+    idData = {
+        "id" : id
+    }
+
+    postInfo = User.howmanyPost(idData)
+    likesGInfo = User.howmanylikesGiven(idData)
+    likesRInfo = User.howmanylikesReceived(idData)
+
+    if likesRInfo[0]['SUM(likes)'] == None:
+        likesRInfoC = 0
+    else:
+        likesRInfoC = likesRInfo[0]['SUM(likes)']
+
+
+    return render_template ('profile.html', user = userInfo[0],ideas = len(postInfo), likesG = len(likesGInfo), likesR = likesRInfoC)
+
 
 # ==================================================Login and register controllers===========================================
 

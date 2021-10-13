@@ -13,11 +13,14 @@
         {% for info in likes: %}
                 {% if info['first_name'] != None: %}
                     <tr>
-                        <td>{{info['first_name']}} {{info['last_name']}} Alias: {{info['username']}}</td>
+                        <td>
+                            <a href="/profile/{{info['liker_id']}}">Username: {{info['username']}}</a>
+                        </td>
+                        <td>{{info['first_name']}} {{info['last_name']}}</td>
                     </tr>
                 {% endif %}
         {% endfor %}
     </table>
-    <h3>Those people liked your idea</h3>
+    <h3>Your likes</h3>
 </body>
 </html>

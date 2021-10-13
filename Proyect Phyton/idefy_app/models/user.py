@@ -104,4 +104,23 @@ class User:
 
 #==========================================================================================================
 
+    @classmethod
+    def howmanyPost(cls,id):
+        query = "SELECT * FROM idefy_references WHERE user_id = %(id)s"
+        results = connectToMySQL('idefy').query_db(query,id)
+        return results
+    
+    @classmethod
+    def howmanylikesGiven(cls,id):
+        query = "SELECT * FROM idefy_references WHERE liker_id = %(id)s"
+        results = connectToMySQL('idefy').query_db(query,id)
+        return results
+    
+    @classmethod
+    def howmanylikesReceived(cls,id):
+        query = "SELECT SUM(likes) FROM idefy_references LEFT JOIN ideas ON idefy_references.idea_id = ideas.idea_id WHERE user_id = %(id)s"
+        results = connectToMySQL('idefy').query_db(query,id)
+        return results
+
+
 

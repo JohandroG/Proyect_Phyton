@@ -16,7 +16,6 @@ def showWhoLikes(id):
     }
 
     likesinfo = Idea.whoLikes(idInfo)
-    print (likesinfo)
 
     return render_template('likes.html', likes = likesinfo)
 

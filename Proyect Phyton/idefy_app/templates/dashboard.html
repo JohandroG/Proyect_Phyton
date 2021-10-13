@@ -9,7 +9,7 @@
 <body>
     <nav>
         <h1>Hello {{user['username']}}</h1>
-        <a href="/user/info">My profile</a>
+        <a href="/profile/{{user['user_id']}}">My profile</a>
         <a href="/logout">LogOut</a>
     </nav>
     
@@ -43,7 +43,12 @@
                             <div>
                                 <a href="/like/{{idea['idea_id']}}">Like</a>
                             </div>
-                            <div><a href="/who/like/{{idea['idea_id']}}">{{idea['likes']}} people</a> like this</div>
+                            <div>
+                                <a href="/who/like/{{idea['idea_id']}}">{{idea['likes']}} people</a> like this
+                            </div>
+                            <div>
+                                <p>Category: {{idea['category']}}</p>
+                            </div>
                         </div>
                     </div>
                     
