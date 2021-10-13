@@ -7,7 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    <nav></nav>
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+        
+        {% if user['user_id'] == userSession['user_id'] %}
+            <form action="/delete/user" method="POST">
+            <input type="hidden" value="{{userSession['user_id']}}"/>
+            <button type="submit">Delete user</button>
+            </form>
+        {% endif %}
+
+    </nav>
 
     <div class="body">
         <div style="border-bottom: 2px solid black; "> 

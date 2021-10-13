@@ -123,4 +123,18 @@ class User:
         return results
 
 
+#==========================================================================================================
+    @classmethod
+    def deleteUser(cls,id):
+        
+        query1 = "DELETE FROM idefy_references WHERE user_id = %(id)s"
+        results1 = connectToMySQL('idefy').query_db(query1,id)
+        
+        query2 = "DELETE FROM idefy_references WHERE liker_id = %(id)s"
+        results2 = connectToMySQL('idefy').query_db(query2,id)
+        
+        query3 = "DELETE FROM users WHERE user_id = %(id)s"
+        results3 = connectToMySQL('idefy').query_db(query2,id)
+
+        #=================================In construction==============================================
 

@@ -12,6 +12,11 @@ bcrypt = Bcrypt(app)
 
 # ==================================================Display pages===========================================
 
+@app.route('/', methods = ['GET'])
+def displayindexinfo():
+    
+    return render_template('index.html')
+
 @app.route('/register', methods = ['GET'])
 def displayRegisterinfo():
     
@@ -37,9 +42,12 @@ def displayDashboardinfo():
 def displayProfileinfo(id):
 
     userInfo = User.validatelogin3(id)
+    
     idData = {
-        "id" : id
+        "id" : id,
     }
+    
+    
 
     postInfo = User.howmanyPost(idData)
     likesGInfo = User.howmanylikesGiven(idData)
@@ -51,7 +59,7 @@ def displayProfileinfo(id):
         likesRInfoC = likesRInfo[0]['SUM(likes)']
 
 
-    return render_template ('profile.html', user = userInfo[0],ideas = len(postInfo), likesG = len(likesGInfo), likesR = likesRInfoC)
+    return render_template ('profile.html', user = userInfo[0], userSession = session['user_info'] , ideas = len(postInfo), likesG = len(likesGInfo), likesR = likesRInfoC)
 
 
 # ==================================================Login and register controllers===========================================
@@ -145,6 +153,21 @@ def loginValidation():
     return redirect('/login')
 
 # ==================================================Logout and clean session===========================================
+@app.route('/delete', methods = ['POST'])
+def deleteUser():
+
+    user_id = request.form['id']
+
+    idDict = {
+        'id' : user_id
+    }
+
+    User.deleteUser(idDict)
+
+    return redirect('/logout')
+
+
+
 
 @app.route('/logout')
 def logout():
