@@ -65,7 +65,7 @@ def filterCat():
         "category" : categoryfil
     }
 
-    filteredIdeas = Idea.displayIdeasFilteredinfo(info)
+    filteredIdeas = Idea.displayFilteredinfo(info)
     userInfo = session['user_info']
     categoriesInfo = Category.getcategories()
 

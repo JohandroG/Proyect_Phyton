@@ -65,30 +65,51 @@ def submitReg():
     email = request.form['email']
     password = request.form['password']
     confirmPass = request.form['conpass']
-    termsagree = request.form['terms'] 
-    
-    encryptedpassword = bcrypt.generate_password_hash(password)
 
-    newUserInfo = {
-        "first_name" : firstName,
-        "last_name" : lastName,
-        "username" : username,
-        "email" : email,
-        "password" : password,
-        "encryptedpassword" : encryptedpassword,
-        "conpass" : confirmPass,
-        "terms" : termsagree 
-    }
-
-    if User.registerValidations(newUserInfo):
-        result = User.registerUser(newUserInfo)
-        userinfo = User.validatelogin3(result)
-        session.clear()
-        user_info = userinfo[0]
-        session['user_info'] = user_info
-        return redirect('/dashboard')
+    if "terms" not in request.form:
+        termsagree = False
     else:
+        termsagree = request.form['terms']
+
+    print(password)
+    print(password)
+    print(password)
+    print(password)
+    print(password)
+    print(password)
+    print(password)
+    print(password)
+    print(username)
+    print(username)
+    print(username)
+    print(username)
+
+    if password == "":
+        flash("You need to create a password before to continue 🔑")
         return redirect('/register')
+    else:
+        encryptedpassword = bcrypt.generate_password_hash(password)
+
+        newUserInfo = {
+            "first_name" : firstName,
+            "last_name" : lastName,
+            "username" : username,
+            "email" : email,
+            "password" : password,
+            "encryptedpassword" : encryptedpassword,
+            "conpass" : confirmPass,
+            "terms" : termsagree 
+        }
+
+        if User.registerValidations(newUserInfo):
+            result = User.registerUser(newUserInfo)
+            userinfo = User.validatelogin3(result)
+            session.clear()
+            user_info = userinfo[0]
+            session['user_info'] = user_info
+            return redirect('/dashboard')
+        else:
+            return redirect('/register')
 
 @app.route ('/login/submit', methods = ['POST'])
 def loginValidation():

@@ -95,7 +95,7 @@ class User:
         if len(data['password']) != len(data['conpass']):
             flash("The Passwords do not match")
             isValid = False
-        if len(data['terms']) == "no":
+        if data['terms'] == False:
             flash("You need to agree the terms before to continue")
             isValid = False
 
