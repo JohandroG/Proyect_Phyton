@@ -82,5 +82,10 @@ class Idea:
         results = connectToMySQL('idefy').query_db(query,data)
 
 #==========================================================================================================
+    @classmethod
+    def whoLikes(cls,data):
+        query = "SELECT * FROM idefy_references LEFT JOIN users ON idefy_references.liker_id = users.user_id WHERE idea_id = %(idea_id)s"
+        results = connectToMySQL('idefy').query_db(query,data)
+        return results
 
 

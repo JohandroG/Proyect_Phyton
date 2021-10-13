@@ -9,7 +9,16 @@ from flask import flash
 
 
 # ==================================================Display pages===========================================
+@app.route('/who/like/<int:id>', methods = ['GET'])
+def showWhoLikes(id):
+    idInfo = {
+        'idea_id': id
+    }
 
+    likesinfo = Idea.whoLikes(idInfo)
+    print (likesinfo)
+
+    return render_template('likes.html', likes = likesinfo)
 
 # ==================================================Add ideas and others===========================================
 
@@ -47,7 +56,7 @@ def addLikes(id):
     
     coincidence =Idea.coincidence(idsInfo)
 
-    print(coincidence)
+    
 
     if len(coincidence) > 0:
         Idea.dislike(idsInfo)

@@ -28,7 +28,7 @@ def displayDashboardinfo():
     userInfo = session['user_info']
     categoriesInfo = Category.getcategories()
     ideasInfo = Idea.displayIdeasAllinfo()
-    print(ideasInfo)
+    
 
     return render_template('dashboard.html', user = userInfo, categories = categoriesInfo, ideas = ideasInfo)
 

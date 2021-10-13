@@ -7,6 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <nav></nav>
+    <h1>Who liked?</h1>
+    <table>
+        {% for info in likes: %}
+                {% if info['first_name'] != None: %}
+                    <tr>
+                        <td>{{info['first_name']}} {{info['last_name']}} Alias: {{info['username']}}</td>
+                    </tr>
+                {% endif %}
+        {% endfor %}
+    </table>
+    <h3>Those people liked your idea</h3>
 </body>
 </html>
