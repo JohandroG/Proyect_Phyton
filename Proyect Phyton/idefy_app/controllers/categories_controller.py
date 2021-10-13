@@ -1,5 +1,6 @@
 import re
 from flask import render_template, session, redirect, request
+from flask.scaffold import F
 from idefy_app import app
 from idefy_app.models.user import User
 from idefy_app.models.category import Category
@@ -13,6 +14,7 @@ from flask import flash
 def displayCategoryform():
     
     categoryes = Category.getcategories()
+    
     
     return render_template('addcategory.html', categories = categoryes)
 
@@ -30,9 +32,27 @@ def addCat():
 
     if Category.categoryValidations(categoryinfo):
         Category.addcategory(categoryinfo)
-        return redirect ('/dashboard')
-    else:
-        return redirect('/category')
+        flash('category created successfully')
+
+    return redirect('/category')
+
+
+@app.route('/delete/category', methods = ['POST'])
+def deleteCat():
+
+    categoryname = request.form['categorydel']
+    cat = {
+        'category' : categoryname
+    }
+    result = Category.deletecategory(cat)
+    
+    if result == False:
+        flash('somebody is using this category you can not delete It')
+    elif result == None:
+        flash('Category deleted successfully')
+
+    return redirect ('/category')
+
 
 # ================================================== Filter ===========================================
 

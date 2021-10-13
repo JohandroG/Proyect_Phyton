@@ -7,7 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <nav></nav>
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+    </nav>
 
     <form action="/add/category" method="POST">
         <h1>Add Category</h1>
@@ -15,6 +17,18 @@
         <input type="text" placeholder="@category" name="category" value="@">
         <button type="submit">Create</button>
     </form>
+
+    <form action="/delete/category" method="POST">
+        <h1>Delete Category</h1>
+        <label for="categorydel">Select the category you would like to remove:</label>
+        <select name="categorydel">
+            {% for category in categories: %}
+                <option>{{category['category']}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Delete</button>
+    </form>
+    
     <div>
         {% with messages = get_flashed_messages() %}
             {% if messages: %}

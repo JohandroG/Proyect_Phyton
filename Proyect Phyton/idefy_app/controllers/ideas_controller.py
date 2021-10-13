@@ -76,3 +76,20 @@ def deleteIdea(id):
     Idea.deleteIdea(idDic)
 
     return redirect ('/dashboard')
+
+
+@app.route('/edit/<int:id>', methods = ['POST'])
+def editIdea(id):
+    
+    category = request.form['categoryedit']
+    info = request.form['edit']
+    
+    info = {
+        'id' : id,
+        'idea' : info,
+        'category' : category
+    }
+        
+    Idea.editIdeas(info)
+
+    return redirect('/dashboard') #=========Nesecito algo que no me recargue la pagina

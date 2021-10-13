@@ -100,9 +100,11 @@ class Idea:
 #==========================================================================================================
 
     @classmethod
-    def displayIdeasFilteredinfo(cls,data):
-        query = "SELECT * FROM idefy_references LEFT JOIN users ON idefy_references.user_id = users.user_id LEFT JOIN ideas ON idefy_references.idea_id = ideas.idea_id WHERE category = %(category)s;"
+    def editIdeas(cls,data):
+        query = "UPDATE ideas SET idea_info = %(idea)s, category = %(category)s WHERE idea_id = %(id)s"
         results = connectToMySQL('idefy').query_db(query,data)
         return results
+
+    
 
 

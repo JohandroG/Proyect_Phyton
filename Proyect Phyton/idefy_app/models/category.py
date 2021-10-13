@@ -59,3 +59,11 @@ class Category:
             flash("📝 Please follow the format to create a category. EX: @category")
             isValid=False
         return isValid
+
+#==========================================================================================================
+
+    @classmethod
+    def deletecategory(cls,data):
+        query = "DELETE FROM categories WHERE category = %(category)s"
+        results = connectToMySQL('idefy').query_db(query,data)
+        return results
