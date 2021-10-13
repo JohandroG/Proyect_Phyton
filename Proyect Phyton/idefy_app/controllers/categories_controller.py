@@ -13,7 +13,7 @@ from flask import flash
 def displayCategoryform():
     
     categoryes = Category.getcategories()
-
+    
     return render_template('addcategory.html', categories = categoryes)
 
     
@@ -33,3 +33,21 @@ def addCat():
         return redirect ('/dashboard')
     else:
         return redirect('/category')
+
+# ================================================== Filter ===========================================
+
+@app.route('/dashboard/filtered', methods = ['POST'])
+def filterCat():
+
+    categoryfil = request.form['categoryfil']
+
+    info = {
+        "category" : categoryfil
+    }
+
+    filteredIdeas = Idea.displayIdeasFilteredinfo(info)
+    userInfo = session['user_info']
+    categoriesInfo = Category.getcategories()
+
+
+    return render_template ('dashboard.html', user = userInfo, categories = categoriesInfo, ideas = filteredIdeas)

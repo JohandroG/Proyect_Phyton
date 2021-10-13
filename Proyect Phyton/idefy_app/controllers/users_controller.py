@@ -29,6 +29,7 @@ def displayDashboardinfo():
     categoriesInfo = Category.getcategories()
     ideasInfo = Idea.displayIdeasAllinfo()
     
+    
 
     return render_template('dashboard.html', user = userInfo, categories = categoriesInfo, ideas = ideasInfo)
 

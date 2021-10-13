@@ -88,4 +88,21 @@ class Idea:
         results = connectToMySQL('idefy').query_db(query,data)
         return results
 
+#==========================================================================================================
+    @classmethod
+    def deleteIdea(cls,data):
+        query = "DELETE FROM idefy_references WHERE idea_id = %(id)s"
+        results = connectToMySQL('idefy').query_db(query,data)
+        
+        query = "DELETE FROM ideas WHERE idea_id = %(id)s"
+        results2 = connectToMySQL('idefy').query_db(query,data)
+
+#==========================================================================================================
+
+    @classmethod
+    def displayIdeasFilteredinfo(cls,data):
+        query = "SELECT * FROM idefy_references LEFT JOIN users ON idefy_references.user_id = users.user_id LEFT JOIN ideas ON idefy_references.idea_id = ideas.idea_id WHERE category = %(category)s;"
+        results = connectToMySQL('idefy').query_db(query,data)
+        return results
+
 

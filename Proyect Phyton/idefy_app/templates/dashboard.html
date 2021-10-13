@@ -31,11 +31,28 @@
         <h2> add <a href="/category">Category</a> </h2>
         </div>
 
+        <div class="categoryfilter">
+            <h3>You can filter the ideas by category</h3>
+            <form action="/dashboard/filtered" method="POST">
+                <label for="categoryfil">Select the category:</label>
+                <select name="categoryfil">
+                    {% for category in categories: %}
+                        <option>{{category['category']}}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">
+                    Filter
+                </button>
+                {% if request.path == "/dashboard/filtered" :  %}
+                <a href="/dashboard">Remove Filter</a>
+                {% endif %}
+            </form>
+        </div>
+
         {% for idea in ideas: %}
             {% if idea['first_name'] != None: %}
-                
                     <div>
-                        <h2>{{idea['first_name']}} says:</h2>
+                        <h2><a href="/profile/{{idea['user_id']}}">{{idea['first_name']}}</a> says:</h2>
                     </div>
                     <div>
                         <div><h4>{{idea['idea_info']}}</h4></div>
@@ -47,11 +64,17 @@
                                 <a href="/who/like/{{idea['idea_id']}}">{{idea['likes']}} people</a> like this
                             </div>
                             <div>
-                                <p>Category: {{idea['category']}}</p>
+                                <p>Category: {{idea['category']}} </p>
                             </div>
+                            {% if idea['user_id'] == user['user_id']: %}
+                            <div>
+                                <a href="/delete/{{idea['idea_id']}}">Delete</a>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
-                    
+                        </div>
+                    </div>
                 {% endif %}
         {% endfor %}
 

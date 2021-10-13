@@ -65,3 +65,14 @@ def addLikes(id):
         Idea.insertLike(idsInfo)
 
     return redirect('/dashboard') #=========Nesecito algo que no me recargue la pagina
+
+
+@app.route('/delete/<int:id>', methods = ['GET'])
+def deleteIdea(id):
+
+    idDic = {
+        'id' : id
+    }
+    Idea.deleteIdea(idDic)
+
+    return redirect ('/dashboard')
