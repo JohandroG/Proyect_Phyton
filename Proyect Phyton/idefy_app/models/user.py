@@ -75,28 +75,31 @@ class User:
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         
         if not EMAIL_REGEX.match(data['email']):
-            flash("Invalid Email, write it in a valid format 📝")
+            flash("Invalid Email, write it in a valid format 📝","email")
             isValid=False
         if len(results2) >= 1:
-            flash("😥 Username already taken.")
+            flash("😥 Username already taken.","username")
             isValid=False
         if len(results) >= 1:
-            flash("😥 Email already taken.")
+            flash("😥 Email already taken.","email")
             isValid=False
         if len(data['first_name']) < 3:
-            flash("The first Name must be at least 3 characters")
+            flash("The first Name must be at least 3 characters","first_name")
             isValid = False
         if len(data['last_name']) < 3:
-            flash("The Last Name must be at least 3 characters")
+            flash("The Last Name must be at least 3 characters","last_name")
+            isValid = False
+        if len(data['username']) < 3:
+            flash("The Username must be at least 3 characters","username")
             isValid = False
         if len(data['password']) < 8:
-            flash("The Password must be at least 8 characters")
+            flash("The Password must be at least 8 characters","password")
             isValid = False
         if len(data['password']) != len(data['conpass']):
-            flash("The Passwords do not match")
+            flash("The Passwords do not match","password")
             isValid = False
         if data['terms'] == False:
-            flash("You need to agree the terms before to continue")
+            flash("⚠ You need to agree the terms before to continue","general")
             isValid = False
 
         return isValid
@@ -126,15 +129,29 @@ class User:
 #==========================================================================================================
     @classmethod
     def deleteUser(cls,id):
+
+        query = "SELECT user_id,idea_id FROM idefy_references WHERE user_id = %(id)s;"
+        results = connectToMySQL('idefy').query_db(query,id)
+
+        # resultInfo = results
+
+        # query1 = "DELETE FROM idefy_references WHERE user_id = %(id)s"
+        # result = connectToMySQL('idefy').query_db(query1,id)
         
-        query1 = "DELETE FROM idefy_references WHERE user_id = %(id)s"
-        results1 = connectToMySQL('idefy').query_db(query1,id)
+        # query2 = "DELETE FROM idefy_references WHERE liker_id = %(id)s"
+        # result = connectToMySQL('idefy').query_db(query2,id)
+
+        # query = "DELETE FROM users WHERE user_id = %(id)s"
+        # result = connectToMySQL('idefy').query_db(query2,id)
         
-        query2 = "DELETE FROM idefy_references WHERE liker_id = %(id)s"
-        results2 = connectToMySQL('idefy').query_db(query2,id)
+        # for result in resultInfo:
+        #     query = "DELETE FROM ideas WHERE idea_id = %(id)s"
+        #     idinfo = {
+        #         'id': result['idea_id']
+        #     }
+        #     result = connectToMySQL('idefy').query_db(query,idinfo)
+
         
-        query3 = "DELETE FROM users WHERE user_id = %(id)s"
-        results3 = connectToMySQL('idefy').query_db(query2,id)
 
         #=================================In construction==============================================
 

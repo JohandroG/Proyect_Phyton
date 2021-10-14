@@ -12,7 +12,7 @@
         
         {% if user['user_id'] == userSession['user_id'] %}
             <form action="/delete/user" method="POST">
-            <input type="hidden" value="{{userSession['user_id']}}"/>
+            <input type="hidden" name="id" value="{{userSession['user_id']}}"/>
             <button type="submit">Delete user</button>
             </form>
         {% endif %}

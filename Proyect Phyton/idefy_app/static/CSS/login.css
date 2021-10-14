@@ -1,0 +1,73 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+nav{
+    text-align: center;
+    color: white;
+    width: 90%;
+    background-color: #217FA8 ;
+    border-radius: 70% 100% 70% 100%;
+    padding: 50px 0px;
+    margin-bottom: 20px;
+    margin: 10px 0px;
+    margin-left: 5% ;
+}
+
+#navbutton{
+    background-color:rgb(9, 60, 87);
+    color: white;
+    border-radius: 30px;
+    border: none;
+    font-size: 25px;
+    padding: 5px 30px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+#navinfo{
+    font-size: 20px;
+}
+
+.label{
+    height: 40px;
+    margin-top: 3%;
+    padding: 0px 10px;
+    border: 2px solid black;
+    border-right: none;
+    border-radius: 20px 0px 0px 20px;
+    background-color: #CAE0FF;
+    vertical-align: top;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+.inputdiv{
+    display: flex;
+    flex-direction: row;
+}
+
+.input{
+    border-radius: 0px 20px 20px 0px;
+    border: 2px solid black;
+    margin-top: 3%;
+    width: 100%;
+    height: 40px;
+    font-size: 25px;
+    padding-left: 12px;
+    
+}
+
+.logbutton{
+    background-color: #217FA8;
+    color: white;
+    border-radius: 30px;
+    border: none;
+    font-size: 40px;
+    padding: 5px 30px;
+    font-weight: 200;
+    margin-bottom: 20px;
+}

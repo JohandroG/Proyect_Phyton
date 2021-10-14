@@ -79,21 +79,9 @@ def submitReg():
     else:
         termsagree = request.form['terms']
 
-    print(password)
-    print(password)
-    print(password)
-    print(password)
-    print(password)
-    print(password)
-    print(password)
-    print(password)
-    print(username)
-    print(username)
-    print(username)
-    print(username)
 
     if password == "":
-        flash("You need to create a password before to continue 🔑")
+        flash("You need to create a password before to continue 🔑","password")
         return redirect('/register')
     else:
         encryptedpassword = bcrypt.generate_password_hash(password)
@@ -134,7 +122,7 @@ def loginValidation():
             session['user_info'] = user_info
             return redirect ('/dashboard')
         else:
-            flash("You entered the wrong password for this Email 😓")
+            flash("You entered the wrong password for this Email 😓","password")
     elif len(result) == 0:
         result2 = User.validatelogin2(emailorUsername)
         if len(result2) == 1:
@@ -145,15 +133,15 @@ def loginValidation():
                 session['user_info'] = user_info
                 return redirect ('/dashboard')
             else:
-                flash("You entered the wrong password for this Username 😓")
+                flash("You entered the wrong password for this Username 😓","password")
         else:
-            flash("There is no user with this information 📃❌")
+            flash("There is no user with this information 📃❌","login")
 
 
     return redirect('/login')
 
 # ==================================================Logout and clean session===========================================
-@app.route('/delete', methods = ['POST'])
+@app.route('/delete/user', methods = ['POST'])
 def deleteUser():
 
     user_id = request.form['id']
@@ -162,11 +150,13 @@ def deleteUser():
         'id' : user_id
     }
 
-    User.deleteUser(idDict)
+    info = User.deleteUser(idDict)
+    
+    print(info)
+    print(info)
+    print(info)
 
     return redirect('/logout')
-
-
 
 
 @app.route('/logout')
