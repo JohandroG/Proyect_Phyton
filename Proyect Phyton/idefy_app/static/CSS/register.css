@@ -5,12 +5,13 @@
     
     .input{
         border-radius: 0px 20px 20px 0px;
-        border: 2px solid black;
+        border: 2px solid white;
         margin-top: 3%;
         width: 100%;
         height: 40px;
         font-size: 25px;
         padding-left: 12px;
+        background-color: rgb(236, 238, 240);
     }
 
     .checkbox{
@@ -41,15 +42,16 @@
         height: 40px;
         margin-top: 3%;
         padding: 0px 10px;
-        border: 2px solid black;
+        border: 2px solid white;
         border-right: none;
         border-radius: 20px 0px 0px 20px;
-        background-color: #CAE0FF;
+        background-color: #217FA8;
         vertical-align: top;
     }
 
     .label>i{
         font-size: 26px;
+        color: white;
     }
 
     body{
@@ -59,7 +61,7 @@
     }
     
     .body{
-        background: rgb(248, 248, 248);
+        
         /* backdrop-filter: blur(10px); */
         padding: 5px 10px;
         display: flex;
@@ -74,6 +76,7 @@
     form{
         display: flex;
         flex-direction: column;
+        margin-top: 250px;
     }
     
     nav{
@@ -84,6 +87,7 @@
         border-radius: 0% 0% 100% 70%;
         padding-bottom: 40px ;
         margin-bottom: 20px;
+        position: absolute;
     }
     .navinfo{
         padding-top: 10px;
@@ -102,6 +106,7 @@
         font-size: 40px;
         padding: 5px 30px;
         font-weight: 200;
+        margin-bottom: 70px;
     }
     
     #navbutton{
@@ -150,9 +155,10 @@
     nav{
         width: 60%;
         height: 400px;
-        margin-right: 5%;
-        border-radius: 0px 300px 250px 250px;
+        margin-left: 5%;
+        border-radius: 300px 0px 250px 250px;
         padding: 80px 100px;
+        position: static;
     }
 
 
@@ -163,23 +169,30 @@
         align-items: initial;
     }
     form{
-        margin-top: 200px;
+        margin-top: 25px;
         padding: 0px 10px;
-        margin-right: 100px;
+        margin-left: 70px;
     }
 
     .input{
-        height: 60px;
+        height: 45px;
         border-radius: 0px 50px 50px 0px;
     }
     
     .label{
-        height: 60px;
+        height: 45px;
         border-radius: 50px 0px 0px 50px;
     }
     
     .label>i{
-        font-size: 38px;
+        font-size: 28px;
+        text-align: center;
+        vertical-align: top;
+    }
+
+    .regbutton{
+        margin: 0px 20px;
+        font-size: 35px;
     }
 
 

@@ -15,51 +15,58 @@
 </head>
 <body>
     <nav>
-        <h1 id="navhead">New User?</h1>
-        <p id="navinfo">Get started by creating your account</p>
-        <h2> Go to 
-            <a id="navbutton" href="/register">
-                <i class="bi bi-box-arrow-left"></i>
-                Register
-            </a> </h2>
+        <div id="navinfodiv">
+            <h1 id="navhead">New User?</h1>
+            <p id="navinfo">Get started by creating your account</p>
+            <h2> Go to 
+                <a id="navbutton" href="/register">
+                    <i class="bi bi-box-arrow-left"></i>
+                    Register
+                </a> </h2>
+        </div>
     </nav>
 
     <div class="body">
         <form action="/login/submit" method="POST">
-            <h1>Login</h1>
+            <h1 id="title">Sing In</h1>
 
                 <label class="labeldat" for="name">Email or Username:</label>
                 <div class="inputdiv">
                     
                     <label class="label">
-                        <i class="bi bi-person-square"></i>
+                        <i class="bi bi-archive-fill"></i>
                     </label>
                     <input class="input" type="text" name="emailUser" placeholder="Email or Username"/>
+                </div>
+                <div class="flash">
+                    {% with messages = get_flashed_messages(category_filter=["login"]) %}
+                        {% if messages: %}
+                            {% for message in messages: %}
+                            <p>{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
                 </div>
                 
                 <label class="labeldat" for="name">Password:</label>
                 <div class="inputdiv">
                     
                     <label class="label">
-                        <i class="bi bi-person-square"></i>
+                        <i class="bi bi-key-fill"></i>
                     </label>
                     <input class="input" type="password" name="user_password" placeholder="Password"/>
                 </div>
-
+                <div class="flash">
+                    {% with messages = get_flashed_messages(category_filter=["password"]) %}
+                        {% if messages: %}
+                            {% for message in messages: %}
+                            <p>{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
                 <button class="logbutton" type="submit">Login</button>
         </form>
-        
-        
-
-        <div>
-            {% with messages = get_flashed_messages() %}
-                {% if messages: %}
-                    {% for message in messages: %}
-                    <p>{{message}}</p>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-        </div>
     </div>
 </body>
 </html>
