@@ -14,9 +14,10 @@ from flask import flash
 def displayCategoryform():
     
     categoryes = Category.getcategories()
+    userInfo = session['user_info']
+    ideasInfo = Idea.displayIdeasAllinfo()
     
-    
-    return render_template('addcategory.html', categories = categoryes)
+    return render_template('addcategory.html', categories = categoryes, user = userInfo, ideas = ideasInfo)
 
     
 
@@ -32,7 +33,7 @@ def addCat():
 
     if Category.categoryValidations(categoryinfo):
         Category.addcategory(categoryinfo)
-        flash('category created successfully')
+        flash('Category created successfully 😀')
 
     return redirect('/category')
 
@@ -47,9 +48,9 @@ def deleteCat():
     result = Category.deletecategory(cat)
     
     if result == False:
-        flash('somebody is using this category you can not delete It')
+        flash('Somebody is using this category you can not delete it 😅')
     elif result == None:
-        flash('Category deleted successfully')
+        flash('Category deleted successfully ✅')
 
     return redirect ('/category')
 
