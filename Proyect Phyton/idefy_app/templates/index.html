@@ -5,34 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idefy Main Page</title>
-    <link rel="stylesheet" href="/idefy_app/static/CSS/normalize.css"/>
-    <link rel="stylesheet" href="/idefy_app/static/CSS/index.css"/>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='CSS/normalize.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='CSS/index.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
+
 </head>
 <body>
-    <nav>
-        <h1>hola</h1>
-        <img id="menu" src="/idefy_app/static/IMG/index/Menu.png"/>
-    </nav>
-
-    <div class="upperside">
-        <div class="writeideasIMG">
-            <img src="/idefy_app/static/IMG/index/Write Ideas.jpg"/>
-        </div>
-        <div>
-            <div class="maininfo">
-
-                    <h1>Welcome to Ideas for you</h1>
-                    <h3>Get started sharing you best ideas with people around the world 🌎</h3>
-                    <h4>Are you new?</h4>
-                    <a id="registermain" href="/register">Register</a>
-                
-            </div>
-        </div>
-    </div>
     
-    <div class="Down side">
-        
+    <div class="mainpage">
+        <h1>Welcome to Idefy</h1>
+        <h2>"Ideas for you"</h2>
+        <h4>⭐ This is a really interesting place where you can share your ideas and interact with people ⭐</h4>
+        <div class="buttons">
+            <a id="register" href="/register">Go to register</a>
+            <a id="login" href="/login">Go to Login</a>
+        </div>
     </div>
-
 </body>
 </html>

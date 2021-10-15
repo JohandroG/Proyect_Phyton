@@ -7,6 +7,7 @@
     <title>profile</title>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='CSS/normalize.css') }}">
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='CSS/dashboard.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='CSS/profile.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,300&display=swap" rel="stylesheet">
@@ -71,52 +72,73 @@
 
 
     <main>
-        <div style="border-bottom: 2px solid black; "> 
-            <!-- delete style later ============================================================= -->
-            <h1>Profile Information</h1>
-            <h2>Name: {{user['first_name']}} {{user['last_name']}}</h2>
-            <h2>Username: {{user['username']}}</h2>
-            <h2>Email: {{user['email']}}</h2>
-        </div>
-        <div>
-            {% if ideas == 0 and likesG == 0 and likesR == 0: %}
-            <h2>This user doesn't have any information yet 😅</h2>
-            <h4>Start sharing your ideas to get some likes and archive some trophies 😀🏆🏆</h4>
-            {% else: %}
-            <h2>Total number of ideas: {{ideas}}</h2>
-            <h2>Total number of likes given: {{likesG}}</h2>
-            <h2>Total number of likes received: {{likesR}}</h2>
-            {% endif %}
-            
-            
-            
+        <div class="users">
+            <div class="userinfo" style="border-bottom: 2px solid black; "> 
+                <!-- delete style later ============================================================= -->
+                <h1>Profile Information</h1>
+                <h2><span>Name:</span> {{user['first_name']}} {{user['last_name']}}</h2>
+                <h2><span>Username:</span> {{user['username']}}</h2>
+                <h2><span>Email:</span> {{user['email']}}</h2>
+            </div>
+            <div class="stadistics">
+                {% if ideas == 0 and likesG == 0 and likesR == 0: %}
+                <h2>This user doesn't have any information yet 😅</h2>
+                <h4>Start sharing your ideas to get some likes and archive some trophies 😀🏆🏆</h4>
+                {% else: %}
+                <h2><span>Total number of ideas:</span> {{ideas}}</h2>
+                <h2><span>Total number of likes given:</span> {{likesG}}</h2>
+                <h2><span>Total number of likes received:</span> {{likesR}}</h2>
+                {% endif %}
+                
+                
+                
+            </div>
         </div>
         <div class="rewardside">
-            <div>
+            <div class="tropies">
                 <h1>Tropies:</h1>
-                <h3>Get trophies for given and receiving likes</h3>
+                <h3>🎉Get trophies for given and receiving likes🍾</h3>
             </div>
 <!-- ===================================================Thropies Side==================================== -->
-            {% if likesR > 0: %}
-                <div class="reward">
-                    <h2>Your first like 🏆</h2>
-                    <h3>Picture</h3>
-                    <p>
-                        Congrats!! You have received your first like somebody liked your idea
-                        so, you are doing something great!! Keep on thinking 😎
-                    </p>
-                </div>
-            {% endif  %}
+            <div class="rewards">
+                {% if likesR > 0: %}
+                    <div class="reward">
+                        <h2>Your first like 🏆</h2>
+                        <div class="pic">
+                            <i class="bi bi-emoji-laughing"></i>
+                        </div>
+                        <p>
+                            Congrats!! You have received your first like somebody liked your idea
+                            so, you are doing something great!! Keep on thinking 😎
+                        </p>
+                    </div>
+                {% endif  %}
+                
+                {% if likesG > 0: %}
+                    <div class="reward">
+                        <h2>Generosity 🏆</h2>
+                        <div class="pic">
+                            <i class="bi bi-hand-thumbs-up-fill"></i>
+                        </div>
+                        <p>
+                            You give your first like! you sure made someone's day ✌
+                        </p>
+                    </div>
+                {% endif  %}
 
-            {% if likesG > 0: %}
-                <div class="reward">
-                    <h2>Generosity 🏆</h2>
-                    <h3>Picture</h3>
-                    <p>
-                        You give your first like! you sure made someone's day ✌
-                    </p>
-                </div>
-            {% endif  %}
+                {% if likesR > 5: %}
+                    <div class="reward">
+                        <h2>Keep Growing 🏆</h2>
+                        <div class="pic">
+                            <i class="bi bi-tree"></i>
+                        </div>
+                        <p>
+                            You have received 6 likes!! Those are more than the fingers in one hand ✋
+                        </p>
+                    </div>
+                {% endif  %}
+
+            </div>
         </div>
         
     </main>

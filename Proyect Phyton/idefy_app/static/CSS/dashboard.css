@@ -373,7 +373,8 @@ margin-bottom: 40px;
     background-color:#CAE0FF ;
     padding: 15px;
     border-radius: 10px;
-    display: none;
+    display: none; 
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 }
 
 #mispell{
@@ -423,11 +424,15 @@ border-radius: 10px;
 
 #delete{
     font-size: 30px;
-    color: rgb(133, 7, 7);
     text-align: center;
     background-color: rgb(161, 89, 89);
     border-radius: 10px;
     border: 2px solid rgb(133, 7, 7);
+}
+
+#delete>a{
+    color: rgb(133, 7, 7);
+    text-decoration: none;
 }
 
 

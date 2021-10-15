@@ -126,13 +126,13 @@
                                     <div class="categoryinfo">
                                         <p>Category: {{idea['category']}} </p>
                                     </div>
-                                    <button type="button" id="editbut">Edit</button>
+                                    
                         </div>
                                 
                                 {% if idea['user_id'] == user['user_id']: %}
+                                <button type="button" id="editbut" onclick="opener(this)">Edit</button>
                                 <div class="editdiv">
-
-
+                                    
                                     <div>
                                         <form action="/edit/{{idea['idea_id']}}" method="POST">
                                                 <p id="mispell">Mispelled something?</p>
@@ -148,7 +148,7 @@
                                     <p id="or">or</p>
                                     
                                         <p id="delete">
-                                            <a hre="/delete/{{idea['idea_id']}}">Delete Idea</a>
+                                            <a href="/delete/{{idea['idea_id']}}">Delete Idea</a>
                                         </p>
                                     
                                 </div>

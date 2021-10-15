@@ -1,70 +1,35 @@
-* {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-body{
-    background-color: #ffffff;
-}
-
-a{
-    border: 2px solid black;
-    padding: 7px;
-    margin: 3px;
-    color: black;
+.mainpage{
+    background-color: #217FA8;
+    padding: 60px 20px;
     border-radius: 20px;
-    text-decoration: none;
+    margin: 5%;
+    color: white;
+    text-align: center;
 }
 
-nav{
+.mainpage *{
+    margin-bottom: 20px;
+}
+
+.buttons{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    background-color: #043f58 ;
-    color: #CAE0FF;
+}
+
+.buttons>a{
+    font-size: 30px;
+    border: 2px solid rgb(9, 60, 87);;
     padding: 10px;
-    position: fixed;
-    width: 370px;
-}
-#logoIMG{
-    height: 70px;
-}
-#menu{
-height: 30px;
-margin-right: 20px;
-}
-.upperside{
-    display: flex;
-    flex-direction: column;
+    border-radius: 10px;
+    background-color: rgb(9, 60, 87);
+    color: white;
+    text-decoration: none;
+    margin-top: 30px;
+    
 }
 
-.writeideasIMG>img{
-    height: 100%;
-    width: 100%;
-    margin-top: 50px;
-}
-
-.maininfo{
-    position: relative;
-    bottom: 80px;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 40px 20px;
-    background: #ffffffb6;
-    padding-right: 40px;
-}
-
-#registermain{
-    width: 100%;
-    text-align: center;
-    background: #2B1609;
-    border: 2px solid #F3BA39;
-    padding: 7px;
-    margin: 3px;
-    color: #F3BA39;
-    border-radius: 20px;
+#register,#login{
     text-decoration: none;
 }
