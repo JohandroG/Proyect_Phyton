@@ -7,7 +7,7 @@ class MySQLConnection:
         connection = pymysql.connect(host = 'localhost',
                                     user = 'root', 
                                     password = 'root', 
-                                    db = db,
+                                    db = 'idefy',
                                     charset = 'utf8mb4',
                                     cursorclass = pymysql.cursors.DictCursor,
                                     autocommit = True)
@@ -19,7 +19,7 @@ class MySQLConnection:
             try:
                 query = cursor.mogrify(query, data)
                 print("Running Query:", query)
-     
+
                 cursor.execute(query, data)
                 if query.lower().find("insert") >= 0:
                     # INSERT queries will return the ID NUMBER of the row inserted

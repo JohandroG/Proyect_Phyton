@@ -40,29 +40,3 @@ window.addEventListener("resize", function(){
     }
 
 });
-
-// ============================================================================
-
-// show or hide button
-
-// create variables
-
-const toggleBtn = document.querySelector('#editbut')
-const divList = document.querySelector('.editdiv')
-
-// for(let i=0; i<toggleBtn.length; i++){
-    // for(let i=0; i<divList.length; i++){
-
-        toggleBtn.addEventListener('click', () => {
-            if (divList.style.display === 'none') {
-                divList.style.display = 'block';
-                toggleBtn.innerHTML = 'Cancel';
-            } 
-            else {
-                divList.style.display = 'none';
-                toggleBtn.innerHTML = 'Edit';
-            }
-        });
-
-    // }
-// }

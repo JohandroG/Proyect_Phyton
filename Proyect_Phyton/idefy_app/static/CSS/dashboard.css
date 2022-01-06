@@ -373,8 +373,24 @@ margin-bottom: 40px;
     background-color:#CAE0FF ;
     padding: 15px;
     border-radius: 10px;
-    display: none; 
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+}
+
+summary{
+    background-color: #2150a8;
+    width: 40%;
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 130px;
+    text-align: center;
 }
 
 #mispell{
