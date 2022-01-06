@@ -1,2 +1,4 @@
 # Proyect_Phyton
-Este es mi primer proyecto así que veamos que tal 😀... Estado: En construcción 🚚🛠🔩 
+Este es mi primer proyecto de phython!
+
+Trabajado con las tecnologias de flask, MySQL Y Jinja 
